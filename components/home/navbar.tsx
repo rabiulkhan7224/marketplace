@@ -21,8 +21,8 @@ useEffect(() => {
  const navItems = ["Home", "Projects"]
 
   return (
-    <div className="flex justify-center w-full  px-4">
-      <div className={`flex items-center justify-between px-6 py-3 rounded-sm shadow-lg w-full container relative z-10 transition-colors duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-sm' : 'bg-transparent'}`}>
+    <div className="flex justify-center w-full fixed top-0 left-0 z-50">
+      <div className={`flex items-center justify-between px-6 py-4 rounded-sm shadow-lg w-full container relative transition-colors duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-sm' : 'bg-transparent'}`}>
         <div className="flex items-center">
           <motion.div
             className="w-8 h-8 mr-6"
