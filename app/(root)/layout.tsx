@@ -1,3 +1,4 @@
+import { Footer } from "@/components/home/footer";
 import Navbar from "@/components/home/navbar";
 
 export default function HomeLayout({children}: {children: React.ReactNode}) {
@@ -5,6 +6,7 @@ export default function HomeLayout({children}: {children: React.ReactNode}) {
         <>
             <Navbar />
             {children}
+            <Footer/>
         </>
     );
 }

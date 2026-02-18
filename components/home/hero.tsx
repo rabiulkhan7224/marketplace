@@ -49,12 +49,25 @@ const buttonVariants = {
 
 export function Hero() {
   return (
-    <section className="min-h-screen pt-24 px-4 sm:px-6 lg:px-8 flex items-center justify-center bg-gradient-to-br from-background via-background to-secondary/10">
+    <section
+     className="min-h-screen pt-24 px-4 sm:px-6 lg:px-8 flex items-center justify-center bg-gradient-to-br from-background via-background to-secondary/10"
+     
+    
+     >
+      
       <motion.div
-        className="max-w-3xl w-full text-center space-y-8"
+        className="max-w-3xl w-full text-center space-y-8 "
         variants={containerVariants}
         initial="hidden"
         animate="visible"
+        style={{
+      backgroundImage: `
+        radial-gradient(circle at center, #FFF991 0%, transparent 70%)
+      `,
+      opacity: 0.6,
+      mixBlendMode: "multiply",
+    }}
+        
       >
         <motion.h1
           variants={itemVariants}
@@ -102,6 +115,7 @@ export function Hero() {
           </Link>
         </motion.div>
       </motion.div>
+     
     </section>
   )
 }
