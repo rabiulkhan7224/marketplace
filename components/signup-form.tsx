@@ -20,6 +20,8 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import { apiMutation } from "@/lib/api"
+import { useRouter } from "next/navigation"
 
 
 const signupSchema = z
@@ -39,6 +41,8 @@ const signupSchema = z
 type SignupFormValues = z.infer<typeof signupSchema>
 
 export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
+  
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -49,14 +53,21 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
   })
 
   //
-  // ✅ Submit Handler
+  // Submit Handler
   //
   const onSubmit = async (data: SignupFormValues) => {
     try {
       console.log("Form Data:", data)
 
-      // 🔥 Replace with your API call
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+     const res=await  apiMutation('POST', '/auth/register', {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+     
+     })
+
+     console.log(res)
+     router.push('/login')
 
       toast.success("Account created successfully!")
 

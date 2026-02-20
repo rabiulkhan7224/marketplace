@@ -5,6 +5,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/v1/ap
 
 // Fetcher with auth header
 const fetcher = async (url: string, token?: string) => {
+  console.log(token)
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
   };

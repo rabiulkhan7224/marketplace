@@ -1,11 +1,12 @@
+"use client"
 import { AdminPanel } from '@/components/panels/admin-panel'
+import { useAuthStore } from '@/lib/authStore'
 
-export const metadata = {
-  title: 'Admin Dashboard | Marketplace',
-  description: 'Manage users and system analytics',
-}
+
 
 export default function AdminDashboard() {
+  const{user,token }=useAuthStore()
+  console.log(user,token)
   return <AdminPanel />
 }
     

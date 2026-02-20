@@ -21,6 +21,9 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from "sonner" // or useToast()
+import { apiMutation } from "@/lib/api"
+import { useRouter } from "next/navigation"
+import { useAuthStore } from "@/lib/authStore"
 
 
 const loginSchema = z.object({
@@ -34,7 +37,8 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-
+const router = useRouter();
+  const login = useAuthStore((s) => s.login);
   const {
     register,
     handleSubmit,
@@ -48,11 +52,18 @@ export function LoginForm({
     try {
       console.log("Login Data:", data)
 
-      // 🔥 Replace with real API call
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-
-      toast.success("Login successful!")
-
+     
+     
+  const res = await apiMutation('POST', '/auth/login', {
+    email: data.email,
+    password: data.password,
+  }) as { data: { token: string } };
+ 
+  
+   
+  toast.success("Login successful!")
+   login(res?.data?.token)
+      router.push('/dashboard');
     } catch (error: any) {
       toast.error(error?.message || "Invalid email or password")
     }
