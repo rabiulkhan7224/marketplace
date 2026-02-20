@@ -90,7 +90,7 @@ export function Hero() {
           variants={itemVariants}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4"
         >
-          <Link href="/auth/signup">
+          <Link href="/signup">
             <motion.div
               variants={buttonVariants}
               whileHover="hover"
@@ -102,7 +102,7 @@ export function Hero() {
               </Button>
             </motion.div>
           </Link>
-          <Link href="/auth/login">
+          <Link href="/login">
             <motion.div
               variants={buttonVariants}
               whileHover="hover"
