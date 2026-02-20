@@ -24,7 +24,7 @@ export default function DashboardLayout({
     <div className="flex h-screen">
       <Sidebar role={user?.data.role as UserRole} />
       <div className="flex-1 flex flex-col overflow-hidden">
-        <Topbar user={user?.data} />
+        <Topbar user={{ ...user?.data, role: user?.data.role as UserRole }} />
         <main className="flex-1 overflow-auto">
           {children}
         </main>

@@ -1,18 +1,29 @@
-'use client'
-import { redirect } from 'next/navigation'
 
-import { UserRole } from '@/lib/types'
-import { useAuthStore } from '@/lib/authStore'
+'use client';
 
-export default function DashboardPage() {
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuthStore } from '@/lib/authStore';
 
-  const {user}=useAuthStore()
-  // Route to role-specific dashboard
-  const routes: Record<UserRole, string> = {
-    [UserRole.ADMIN]: '/dashboard/admin',
-    [UserRole.BUYER]: '/dashboard/buyer',
-    [UserRole.SOLVER]: '/dashboard/solver'
-  }
+export default function Dashboard() {
+  const { user, isAuthenticated } = useAuthStore();
+  const router = useRouter();
 
-  redirect(routes[user?.role as UserRole] || '/dashboard')
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.push('/login');
+      return;
+    }
+
+    // Role-based redirect or render
+    if (user?.role === 'BUYER') {
+      router.push('/dashboard/buyer');
+    } else if (user?.role === 'SOLVER') {
+      router.push('/dashboard/solver');
+    } else if (user?.role === 'ADMIN') {
+      router.push('/dashboard/admin');
+    }
+  }, [isAuthenticated, user, router]);
+
+  return <div>Loading dashboard...</div>;
 }
